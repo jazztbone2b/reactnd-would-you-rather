@@ -5,9 +5,63 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.center {
+  display: flex;
+  justify-content: space-around;
+  color: #e53935;
+}
+
+.nav {
+  margin-bottom: 25px;
+}
+
+.active {
+  font-weight: bold;
+}
+
+.nav-link {
+  text-decoration: inherit;
+  color: inherit;
+}
+
+.card {
+  max-width: 500px;
+  border-radius: 5px;;
+  box-shadow: 2px 2px 5px grey;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 25px;
+}
+
+.medium-image {
+  width: 100px;
+  height: 100px;
+}
+
+.select-user {
+  width: 100%;
+}
+
+.sign-in-btn {
+  margin-top: 10px;
+  width: 100%;
+  height: 25px;
+  border-radius: 5px;
+  border: none;
+  background-color: #e53935;
+  color: white;
+}
+
+.home-container {
+  border-radius: 5px;;
+  box-shadow: 2px 2px 5px grey;
+  max-width: 600px;
+  margin: auto;
+  padding: 25px;
 }

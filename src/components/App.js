@@ -1,25 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
+import { handleInitialData } from '../actions/shared';
+import Nav from './Nav';
+import SignOn from './SignOn';
+import Home from './Home';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  componentDidMount() {
+    this.props.dispatch(handleInitialData())
+  }
+
+  render() {
+    console.log(this.props.authedUser);
+    return (
+      <div>
+        <h3 className='center'>Would You Rather?</h3>
+        <hr></hr>
+        <div>
+          <Nav />
+          {
+          // if a user is opening the app for the first time, render the sign on component
+          // otherwise, render the home component
+          }
+          {this.props.loading === true
+            ? <SignOn />
+            : <Home />
+          }
+        </div>
+      </div>
+    )
+  }
 }
 
-export default App;
+function mapStateToProps ({ authedUser }) {
+  return {
+    loading: authedUser === null
+  }
+}
+
+export default connect(mapStateToProps)(App);
