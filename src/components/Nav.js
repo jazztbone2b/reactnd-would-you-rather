@@ -25,7 +25,7 @@ class Nav extends Component {
                         <span>
                             <img className='small-image' src={avatar}/>{name} &nbsp;
                         </span>
-                        <button to='/' className='nav-link blank-btn' activeClassName='active' onClick={this.handleLogOutUser}>Logout</button>
+                        <button to='/' className='nav-link blank-btn' onClick={this.handleLogOutUser}>Logout</button>
                     </span>
                 }
             </nav>

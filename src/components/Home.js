@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import QuestionList from './QuestionList';
 
 class Home extends Component {
     state = {
@@ -17,6 +18,7 @@ class Home extends Component {
 
     render() {
         const { type, typeOneColor, typeTwoColor } = this.state;
+        console.log('TYPE', type)
 
         return (
             <div className='home-container'>
@@ -41,12 +43,11 @@ class Home extends Component {
                 <hr/>
 
                 <div>
-                    <ul>
-                        {type === 1 
-                        ? <li>Unaswered questions</li>
-                        : <li>Answered questions</li>
+                    {type === 1 
+                        // render the list of question based on type
+                        ? <div><QuestionList type={type} /></div>
+                        : <div><QuestionList type={type} /></div>
                     }
-                    </ul>
                 </div>
             </div>
         )
