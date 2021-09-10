@@ -11,3 +11,4 @@ export default function receiveUsers (state = {}, action) {
             return state;
     }
 }
+

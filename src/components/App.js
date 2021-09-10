@@ -1,9 +1,12 @@
 import React, { Component, Fragment } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { handleInitialData } from '../actions/shared';
 import Nav from './Nav';
 import SignOn from './SignOn';
 import Home from './Home';
+import NewQuestion from './NewQuestion';
+import LeaderBoard from './LeaderBoard';
 
 class App extends Component {
   componentDidMount() {
@@ -11,30 +14,39 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.props.authedUser);
+    console.log(this.props.authedUser)
     return (
-      <div>
-        <h3 className='center'>Would You Rather?</h3>
-        <hr></hr>
+      <Router>
         <div>
-          <Nav />
-          {
-          // if a user is opening the app for the first time, render the sign on component
-          // otherwise, render the home component
-          }
-          {this.props.loading === true
-            ? <SignOn />
-            : <Home />
-          }
+          <h3 className='center'>Would You Rather?</h3>
+          <hr></hr>
+          <div>
+            <Nav />
+            {
+            // if a user is opening the app for the first time, render the sign on component
+            // otherwise, render the home component
+            }
+            {this.props.loading === true
+              ? <Route path='/' exact component={SignOn} />
+              : (
+                <div>
+                  <Route path='/'exact component={Home} />
+                  <Route path='/newQuestion' exact component={NewQuestion} />
+                  <Route path='/leaderBoard' exact component={LeaderBoard} />
+                </div>
+              )
+            } 
+          </div>
         </div>
-      </div>
+      </Router>
     )
   }
 }
 
 function mapStateToProps ({ authedUser }) {
   return {
-    loading: authedUser === null
+    loading: authedUser === null,
+    authedUser
   }
 }
 

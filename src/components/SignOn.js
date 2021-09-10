@@ -9,7 +9,6 @@ class SignOn extends Component {
     }
 
     handleChange = (e) => {
-        console.log(e.target.value)
         this.setState(() => ({
             selectedUser: e.target.value
         }))
@@ -20,6 +19,9 @@ class SignOn extends Component {
     }
 
     render() {
+        const { users } = this.props;
+        console.log('USERS:', users)
+
         return (
             <div className='card'>
                 <div>
@@ -31,17 +33,38 @@ class SignOn extends Component {
                     <img src={logo} className='medium-image'/>
                 </div>
 
-                <div>
+                <form>
                     <select className='select-user' onChange={this.handleChange}>
                         <option></option>
-                        <option value='USEtyR'>User 1</option>
+                        {users.map((user) => (
+                            <option key={user.id} value={user.id}> 
+                                {user.name}
+                            </option>
+                        ))}
                     </select>
-                </div>
+                </form>
 
-                <button className='sign-in-btn' onClick={this.setAuthedUser}>Sign In</button>
+                <button 
+                    className='sign-in-btn'
+                    onClick={this.setAuthedUser}
+                    disabled={!this.state.selectedUser}>
+                        Sign In
+                </button>
             </div>
         )
     }
 }
 
-export default connect()(SignOn);
+function mapStateToProps({ users }) {
+    return {
+        users: Object.keys(users).map((id) => {
+            return {
+                id: users[id].id,
+                name: users[id].name,
+                avatar: users[id].avatarURL
+            }
+        })
+    }
+}
+
+export default connect(mapStateToProps)(SignOn);
