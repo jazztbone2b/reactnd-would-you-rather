@@ -85,6 +85,11 @@ li {
   list-style: none;
 }
 
+a {
+  text-decoration: none;
+  text-align: center;
+}
+
 .question-card {
   max-width: 400px;
   margin-left: auto;
@@ -109,3 +114,4 @@ li {
   justify-content: space-between;
   width: 100%;
 }
+

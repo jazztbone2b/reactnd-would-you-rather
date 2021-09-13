@@ -1,22 +1,25 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 
 class QuestionCard extends Component {
     render() {
-        const { question } = this.props;
-        console.log('QUESTION CARD', question);
+        console.log('PROPS', this.props)
+        const { users, askedQuestion } = this.props;
+        const currentUser = users[askedQuestion.author];
+
         return (
             <div className='question-card'>
-                <div className='card-header'>{question.author} asks:</div>
+                <div className='card-header'>{currentUser.name} asks:</div>
                 <hr/>
                 <div className='question-content'>
-                    <div class='medium-image'>
-                        left
-                    </div>
-                    {/* need to get the image for the user */}
+                    <img className='medium-image' src={currentUser.avatarURL} />
+
+                    {/* State should change the view of the content below */}
                     <div className='question-detail'>
                         <div>Would you rather</div>
-                        <div>...{question.optionOne.text}...</div>
-                        <button className='sign-in-btn'>View Poll</button>
+                        <div>...{askedQuestion.optionOne.text}...</div>
+                        <NavLink to={`/question/${askedQuestion.id}`} className='sign-in-btn'>View Poll</NavLink>
                     </div>
                 </div>
             </div>
@@ -24,4 +27,13 @@ class QuestionCard extends Component {
     }
 }
 
-export default QuestionCard;
+function mapStateToProps({ users }, question) {
+    const askedQuestion = question.question;
+
+    return {
+        users,
+        askedQuestion
+    }
+}
+
+export default connect(mapStateToProps)(QuestionCard);

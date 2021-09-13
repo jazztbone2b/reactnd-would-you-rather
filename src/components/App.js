@@ -7,6 +7,7 @@ import SignOn from './SignOn';
 import Home from './Home';
 import NewQuestion from './NewQuestion';
 import LeaderBoard from './LeaderBoard';
+import Results from './Results';
 
 class App extends Component {
   componentDidMount() {
@@ -27,12 +28,13 @@ class App extends Component {
             // otherwise, render the home component
             }
             {this.props.loading === true
-              ? <Route path='/' exact component={SignOn} />
+              ? <Route path='/' component={SignOn} />
               : (
                 <div>
                   <Route path='/'exact component={Home} />
                   <Route path='/newQuestion' exact component={NewQuestion} />
                   <Route path='/leaderBoard' exact component={LeaderBoard} />
+                  <Route path='/question/:id' component={Results} />
                 </div>
               )
             } 

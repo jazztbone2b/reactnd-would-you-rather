@@ -6,7 +6,6 @@ import { handleLogOut } from '../actions/shared';
 class Nav extends Component {
     handleLogOutUser = () => {
         this.props.dispatch(handleLogOut());
-        window.location.reload('/');
     }
 
     render() {
@@ -19,7 +18,7 @@ class Nav extends Component {
                 <NavLink exact={true} to='/' className='nav-link' activeClassName='active'>Home</NavLink>
                 <NavLink to='/newQuestion' className='nav-link' activeClassName='active'>New Question</NavLink>
                 <NavLink to='/leaderBoard' className='nav-link' activeClassName='active'>Leader Board</NavLink>
-                
+                 
                 {authedUser !== null && 
                     <span>
                         <span>
