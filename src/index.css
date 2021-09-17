@@ -83,6 +83,10 @@ body {
   background: none;
 }
 
+.hdr-btn:hover {
+  cursor: pointer;
+}
+
 .home-container {
   border-radius: 5px;;
   box-shadow: 2px 2px 5px grey;
