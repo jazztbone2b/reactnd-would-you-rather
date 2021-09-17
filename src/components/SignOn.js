@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import logo from '../logo.svg';
 import { handleAuthedUser } from '../actions/shared';
+import { Redirect } from 'react-router-dom';
 
 class SignOn extends Component {
     state = {
@@ -15,12 +16,16 @@ class SignOn extends Component {
     }
 
     setAuthedUser = () => {
-        this.props.dispatch(handleAuthedUser(this.state.selectedUser));
+        Promise.resolve(this.props.dispatch(handleAuthedUser(this.state.selectedUser)))
+            .then(() => {
+                return <Redirect to='/' />
+            })
     }
 
     render() {
         const { users } = this.props;
-        console.log('USERS:', users)
+        
+        const { selectedUser } = this.state;
 
         return (
             <div className='card'>
@@ -30,7 +35,7 @@ class SignOn extends Component {
                 </div>
 
                 <div>
-                    <img src={logo} className='medium-image'/>
+                    <img alt='react-icon' src={logo} className='medium-image'/>
                 </div>
 
                 <form>
@@ -47,7 +52,7 @@ class SignOn extends Component {
                 <button 
                     className='sign-in-btn'
                     onClick={this.setAuthedUser}
-                    disabled={!this.state.selectedUser}>
+                    disabled={!selectedUser}>
                         Sign In
                 </button>
             </div>

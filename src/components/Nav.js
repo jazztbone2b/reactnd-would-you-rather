@@ -9,22 +9,20 @@ class Nav extends Component {
     }
 
     render() {
-        console.log('PROPS', this.props)
         const { authedUser, avatar, name } = this.props;
 
-        // need to get authedUser data and rerender here
         return (
             <nav className='center nav'>
                 <NavLink exact={true} to='/' className='nav-link' activeClassName='active'>Home</NavLink>
-                <NavLink to='/newQuestion' className='nav-link' activeClassName='active'>New Question</NavLink>
+                <NavLink to='/add' className='nav-link' activeClassName='active'>New Question</NavLink>
                 <NavLink to='/leaderBoard' className='nav-link' activeClassName='active'>Leader Board</NavLink>
                  
                 {authedUser !== null && 
                     <span>
                         <span>
-                            <img className='small-image' src={avatar}/>{name} &nbsp;
+                            <img alt={`${name}`} className='small-image' src={avatar}/>{name} &nbsp;
                         </span>
-                        <button to='/' className='nav-link blank-btn' onClick={this.handleLogOutUser}>Logout</button>
+                        <NavLink to='/' className='nav-link blank-btn' activeClassName='non-active' onClick={this.handleLogOutUser}>Logout</NavLink>
                     </span>
                 }
             </nav>

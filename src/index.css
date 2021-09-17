@@ -16,12 +16,22 @@ body {
   color: #e53935;
 }
 
+.solid-red-line {
+  border-bottom: 1px solid #e53935;
+  padding-bottom: 5px;
+}
+
 .nav {
   margin-bottom: 25px;
+  border-bottom: 1px solid #e53935;
 }
 
 .active {
   font-weight: bold;
+}
+
+.non-active {
+  font-weight: 400;
 }
 
 .nav-link {
@@ -45,8 +55,8 @@ body {
 }
 
 .small-image {
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
 }
 
 .select-user {
@@ -61,6 +71,10 @@ body {
   border: none;
   background-color: #e53935;
   color: white;
+}
+
+.sign-in-btn:hover {
+  cursor: pointer;
 }
 
 .blank-btn {
@@ -88,6 +102,11 @@ li {
 a {
   text-decoration: none;
   text-align: center;
+  color: inherit;
+}
+
+.avatar-container {
+  margin: auto;
 }
 
 .question-card {
@@ -102,6 +121,9 @@ a {
 .card-header {
   color: #e53935;
   font-weight: bold;
+  border-bottom: 1px solid;
+  padding-bottom: 5px;
+  margin-bottom: 20px;
 }
 
 .question-content {
@@ -115,3 +137,117 @@ a {
   width: 100%;
 }
 
+.question-result {
+  padding: 10px 0px 10px 5px;
+}
+
+.question-totals {
+  text-align: center;
+  margin-top: 2px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.your-vote-container {
+  display: flex;
+}
+
+.your-vote {
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
+  text-align: center;
+  font-size: 12px;
+  background-color: #b71c1c;
+  color: white;
+  font-weight: bold;
+  padding: 1px;
+}
+
+.radio-container {
+  margin-top: 10px;
+}
+
+.message {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.question-input {
+  width: 96%;
+  padding: 5px;
+  border: 1px solid #e53935;
+  border-radius: 5px;
+  margin: auto;
+}
+
+.question-creation {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+}
+
+.small-text {
+  font-size: 12px;
+}
+
+.or-text {
+  text-align: center;
+  font-weight: bold;
+  font-size: 14px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.totals-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.total-line-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.total-split {
+  width: 100%;
+  margin: 10px 0px;
+}
+
+.grand-total-container {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  width: 150px;
+  height: 100px;
+  margin-left: 15px;
+  margin-top: 15px;
+}
+
+.score-header {
+  background-color: #e0e0e0;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.score-header div {
+  padding: 10px;
+  text-align: center;
+}
+
+.grand-total {
+  text-align: center;
+  margin: auto;
+}
+
+.grand-total div {
+  border-radius: 25px;
+  background-color: #e53935;
+  color: white;
+  width: 20px;
+  padding: 10px
+}
+
+.not-found {
+  text-align: center;
+}

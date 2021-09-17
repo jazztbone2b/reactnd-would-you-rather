@@ -1,30 +1,37 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import QuestionCard from './QuestionCard';
+import QuestionCardContainer from './QuestionCardContainer';
 
 class QuestionList extends Component {
     render() {
-        const { displayQuestions } = this.props;
-        console.log('HERE BE PROPS:', displayQuestions);
+        const { displayQuestions, type } = this.props;
 
         return (
-            <ul>
-                {displayQuestions.map((item) => (
-                    <li key={item.id}>
-                        <QuestionCard question={item} />
-                    </li>
-                ))}
-            </ul>
+            <div>
+                {displayQuestions.length === 0 
+                    ?
+                        <div className='message'>There are no {type=== 1 ? 'unanswered' : 'answered'} questions.</div>
+                    :
+                    <ul>
+                        {displayQuestions.sort((a, b) => b.timestamp - a.timestamp).map((item) => (
+                            <li key={item.id}>
+                                <QuestionCardContainer question={item.id} displayList={true} type={type}/>
+                            </li>
+                        ))}
+                    </ul>
+                }
+            </div>
         )
     }
 }
 
-function mapStateToProps({ authedUser, questions, users }, type) {
+function mapStateToProps({ authedUser, questions, users }, { type }) {
     const authedUserData = users[authedUser];
 
-    const answeredQuestions = Object.keys(authedUserData.answers).map((id) => {
+    const answeredArr = [];
+    Object.keys(authedUserData.answers).forEach((id) => {
         if (questions[id]) {
-            return questions[id];
+            answeredArr.push(questions[id]);
         }
     });
 
@@ -36,7 +43,8 @@ function mapStateToProps({ authedUser, questions, users }, type) {
     });
 
     return {
-        displayQuestions: type.type === 1 ? unAnsweredArr : answeredQuestions,
+        displayQuestions: type === 1 ? unAnsweredArr : answeredArr,
+        type: type
     }
 }
 

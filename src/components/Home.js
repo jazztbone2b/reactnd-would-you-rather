@@ -3,7 +3,7 @@ import QuestionList from './QuestionList';
 
 class Home extends Component {
     state = {
-        type: 1, // 1 will indicate unanswered, 2 answered
+        type: 1,
         typeOneColor: '#e53935',
         typeTwoColor: 'none'
     }
@@ -18,11 +18,10 @@ class Home extends Component {
 
     render() {
         const { type, typeOneColor, typeTwoColor } = this.state;
-        console.log('TYPE', type)
 
         return (
             <div className='home-container'>
-                <div className='center'>
+                <div className='center solid-red-line'>
                     <button
                     className='blank-btn'
                     style={{color: typeOneColor}}
@@ -39,12 +38,9 @@ class Home extends Component {
                         Answered Questions
                     </button>
                 </div>
-                
-                <hr/>
 
                 <div>
-                    {type === 1 
-                        // render the list of question based on type
+                    {type === 1
                         ? <div><QuestionList type={type} /></div>
                         : <div><QuestionList type={type} /></div>
                     }
