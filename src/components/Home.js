@@ -23,7 +23,7 @@ class Home extends Component {
             <div className='home-container'>
                 <div className='center solid-red-line'>
                     <button
-                    className='blank-btn'
+                    className='blank-btn hdr-btn'
                     style={{color: typeOneColor}}
                     onClick={() => this.handleChange(1)}
                     >
@@ -31,7 +31,7 @@ class Home extends Component {
                     </button>
 
                     <button 
-                        className='blank-btn'
+                        className='blank-btn hdr-btn'
                         style={{color: typeTwoColor}}
                         onClick={() => this.handleChange(2)}
                     >
