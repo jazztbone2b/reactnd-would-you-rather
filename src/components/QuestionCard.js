@@ -4,7 +4,6 @@ import { NavLink } from 'react-router-dom';
 
 class QuestionCard extends Component {
     render() {
-        console.log('PROPS', this.props)
         const { users, askedQuestion } = this.props;
         const currentUser = users[askedQuestion.author];
 

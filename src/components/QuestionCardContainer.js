@@ -8,6 +8,14 @@ class QuestionCardContainer extends Component {
     render() {
         const { currentUser, askedQuestion, displayList, answered, didAnswer } = this.props;
 
+        if (!askedQuestion) {
+            return (
+                <div>
+                    <h2 className='not-found'>Question was not found</h2>
+                </div>
+            )
+        }
+
         return (
             <div>
                 {displayList 
@@ -28,27 +36,33 @@ class QuestionCardContainer extends Component {
 function mapStateToProps({ authedUser, users, questions }, { question, displayList }) {
     const askedQuestion = questions[question];
 
-    const currentUser = users[askedQuestion.author];
+    if (!askedQuestion) {
+        return {
+            askedQuestion: null
+        }
+    } else {
+        const currentUser = users[askedQuestion.author];
 
-    const answeredQuestion1 = askedQuestion.optionOne.votes.find((user) => user === authedUser);
-    const answeredQuestion2 = askedQuestion.optionTwo.votes.find((user) => user === authedUser);
+        const answeredQuestion1 = askedQuestion.optionOne.votes.find((user) => user === authedUser);
+        const answeredQuestion2 = askedQuestion.optionTwo.votes.find((user) => user === authedUser);
 
-    let answered = true;
-    if (!answeredQuestion1 && !answeredQuestion2) {
-        answered = false;
-    }
+        let answered = true;
+        if (!answeredQuestion1 && !answeredQuestion2) {
+            answered = false;
+        }
 
-    let whichAnswer = null;
-    if (answered) {
-        whichAnswer = answeredQuestion1 ? 1 : 2
-    }
+        let whichAnswer = null;
+        if (answered) {
+            whichAnswer = answeredQuestion1 ? 1 : 2
+        }
 
-    return {
-        currentUser,
-        askedQuestion,
-        displayList,
-        answered: answered,
-        didAnswer: whichAnswer
+        return {
+            currentUser,
+            askedQuestion,
+            displayList,
+            answered: answered,
+            didAnswer: whichAnswer
+        }
     }
 }
 
